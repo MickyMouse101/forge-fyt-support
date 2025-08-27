@@ -18,6 +18,12 @@
     .row{display:flex;gap:16px;flex-wrap:wrap}
     .col{flex:1;min-width:220px}
     .kbd{font-family:monospace;background:#f1f5f9;padding:6px 8px;border-radius:6px}
+    .tabs{display:flex;gap:8px;margin-top:12px}
+    .tab-btn{padding:8px 12px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--accent);cursor:pointer}
+    .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .hidden{display:none}
+    .content{margin-top:12px}
+    .policy h3{margin-top:12px}
   </style>
 </head>
 <body>
@@ -26,44 +32,81 @@
       <h1>Forge Fitness — Support</h1>
       <p class="lead">Need help with subscriptions or the app? Use the contact email below and include your device model and iOS version so we can respond faster.</p>
 
-      <div class="section row">
-        <div class="col">
-          <h3>Contact</h3>
-          <p class="muted">Email</p>
-          <p><a href="mailto:support@forgefitness.example.com">support@forgefitness.example.com</a></p>
+      <div class="tabs" role="tablist" aria-label="Support tabs">
+        <button id="supportTab" class="tab-btn active" role="tab" aria-selected="true" aria-controls="supportSection">Support</button>
+        <button id="privacyTab" class="tab-btn" role="tab" aria-selected="false" aria-controls="privacySection">Privacy Policy</button>
+      </div>
+
+      <div id="supportSection" class="content" role="tabpanel">
+        <div class="section row">
+          <div class="col">
+            <h3>Contact</h3>
+            <p class="muted">Email</p>
+            <p><a href="mailto:support@forgefitness.example.com">support@forgefitness.example.com</a></p>
+          </div>
+
+          <div class="col">
+            <h3>Quick links</h3>
+            <p class="muted">Privacy / Terms</p>
+            <p><a href="privacy.html" target="_self" rel="noopener">Open Privacy Policy</a></p>
+          </div>
         </div>
 
-        <div class="col">
-          <h3>Quick links</h3>
-          <p class="muted">Privacy / Terms</p>
-          <p><a href="https://yourdomain.example.com/privacy" target="_blank" rel="noopener">Privacy Policy</a></p>
+        <div class="section">
+          <h3>Subscription troubleshooting</h3>
+          <ol>
+            <li>Ensure you have the latest app version installed.</li>
+            <li>To restore purchases: open the app → Settings → Restore Purchases.</li>
+            <li>If Subscribe does nothing in TestFlight: sign out of the App Store (Settings → Apple ID → Sign Out), then attempt the purchase and sign in when prompted with your Sandbox Tester credentials.</li>
+          </ol>
+        </div>
+
+        <div class="section">
+          <h3>Testing / Review notes</h3>
+          <p class="muted">Sandbox / TestFlight</p>
+          <p>For testers: create a Sandbox Tester in App Store Connect and use those credentials when prompted during purchase.</p>
+          <p>Reviewer dev bypass (ephemeral): enter the code <span class="kbd">qwerty12345</span> on the paywall to unlock the app until the next app restart.</p>
+        </div>
+
+        <div class="section">
+          <h3>What to include in a support request</h3>
+          <p class="muted">Please include:</p>
+          <ul>
+            <li>Device model (e.g. iPhone 14) and iOS version</li>
+            <li>App build number (from Settings → About)</li>
+            <li>A short description of the issue and any console logs if available</li>
+          </ul>
         </div>
       </div>
 
-      <div class="section">
-        <h3>Subscription troubleshooting</h3>
-        <ol>
-          <li>Ensure you have the latest app version installed.</li>
-          <li>To restore purchases: open the app → Settings → Restore Purchases.</li>
-          <li>If Subscribe does nothing in TestFlight: sign out of the App Store (Settings → Apple ID → Sign Out), then attempt the purchase and sign in when prompted with your Sandbox Tester credentials.</li>
-        </ol>
-      </div>
+      <div id="privacySection" class="content hidden policy" role="tabpanel" aria-hidden="true">
+        <h2>Privacy Policy</h2>
+        <p class="muted">Effective date: 2025-08-27</p>
 
-      <div class="section">
-        <h3>Testing / Review notes</h3>
-        <p class="muted">Sandbox / TestFlight</p>
-        <p>For testers: create a Sandbox Tester in App Store Connect and use those credentials when prompted during purchase.</p>
-        <p>Reviewer dev bypass (ephemeral): enter the code <span class="kbd">qwerty12345</span> on the paywall to unlock the app until the next app restart.</p>
-      </div>
+        <p>Forge Fitness ("we", "us", "the App") respects your privacy. This page explains what information the App collects, how it is used, and how you can contact us.</p>
 
-      <div class="section">
-        <h3>What to include in a support request</h3>
-        <p class="muted">Please include:</p>
+        <h3>Information we collect</h3>
+        <p>We may collect:</p>
         <ul>
-          <li>Device model (e.g. iPhone 14) and iOS version</li>
-          <li>App build number (from Settings → About)</li>
-          <li>A short description of the issue and any console logs if available</li>
+          <li>Account and contact information you provide when you contact support (email).</li>
+          <li>Usage data and analytics about how you use the App (features used, crashes, device type).</li>
+          <li>Purchase and subscription status via Apple’s StoreKit (receipt/transaction identifiers) to manage access. We do not collect full payment details — those are handled by Apple.</li>
         </ul>
+
+        <h3>How we use information</h3>
+        <p>We use data to: operate and improve the App, manage subscriptions, respond to support requests, and for analytics to improve performance and features.</p>
+
+        <h3>Sharing & third parties</h3>
+        <p>We do not sell personal data. We may share limited data with third‑party services (analytics or crash reporting) under their privacy terms, and with Apple for subscription verification. Third parties process data on our behalf and are required to protect it.</p>
+
+        <h3>Data retention</h3>
+        <p>We retain information only as long as necessary to provide the service, comply with legal obligations, or until you request deletion where applicable.</p>
+
+        <h3>Your choices</h3>
+        <p>You can opt out of analytics (where supported) and manage subscriptions through your Apple ID subscription settings. To request data deletion or ask privacy questions, contact us at <a href="mailto:support@forgefitness.example.com">support@forgefitness.example.com</a>.</p>
+
+        <h3>Changes</h3>
+        <p>We may update this policy from time to time. Material changes will be posted here with an updated effective date.</p>
       </div>
 
       <footer>
@@ -71,5 +114,38 @@
       </footer>
     </div>
   </div>
+
+  <script>
+    (function(){
+      const supportTab = document.getElementById('supportTab');
+      const privacyTab = document.getElementById('privacyTab');
+      const supportSection = document.getElementById('supportSection');
+      const privacySection = document.getElementById('privacySection');
+
+      function showSupport() {
+        supportTab.classList.add('active');
+        privacyTab.classList.remove('active');
+        supportTab.setAttribute('aria-selected','true');
+        privacyTab.setAttribute('aria-selected','false');
+        supportSection.classList.remove('hidden');
+        privacySection.classList.add('hidden');
+        privacySection.setAttribute('aria-hidden','true');
+        supportSection.setAttribute('aria-hidden','false');
+      }
+
+      function showPrivacy() {
+        privacyTab.classList.add('active');
+        supportTab.classList.remove('active');
+        privacyTab.setAttribute('aria-selected','true');
+        supportTab.setAttribute('aria-selected','false');
+        privacySection.classList.remove('hidden');
+        supportSection.classList.add('hidden');
+        supportSection.setAttribute('aria-hidden','true');
+        privacySection.setAttribute('aria-hidden','false');
+      }
+
+      supportTab.addEventListener('click', showSupport);
+      privacyTab.addEventListener('click', showPrivacy);
+    })();
+  </script>
 </body>
-</html>
